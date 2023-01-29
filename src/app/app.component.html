@@ -1,1 +1,41 @@
-<h1>Pay Less Play More</h1>
+<div class="main">
+  <h1 class="title">pay less play more</h1>
+  <div class="content">
+    <form [formGroup]="registerForm" class="form">
+      <div class="form-field">
+        <label for="name">Game name *</label>
+        <input type="text" formControlName="name" id="name">
+      </div>
+      <div class="form-field">
+        <label for="hours">Hours to complete *</label>
+        <input type="number" formControlName="hours" id="hours">
+      </div>
+      <div class="form-field">
+        <label for="price">Price *</label>
+        <input type="number" min="0.00" max="10000.00" step="0.01" formControlName="price" id="price">
+      </div>
+      <button class="btn"  (click)="register()">register</button>
+    </form>
+    <ul class="list">
+      <li class="list-item header">
+        <span>Game Name</span>
+        <span>Hours to complete</span>
+        <span>Price</span>
+        <span>Actions</span>
+      </li>
+      <li class="list-item" *ngFor="let item of games;let i = index" [id]="i">
+        <span> {{ item.name }}</span>
+        <span>{{ item.hours }}</span>
+        <span>R$ {{ item.price }}</span>
+        <img (click)="remove(i)" src="/assets/trash-fill.svg" alt="">
+      </li>
+    </ul>
+    <form [formGroup]="calcForm" class="form calculate">
+      <div class="form-field">
+        <label for="budget">Budget *</label>
+        <input type="number" min="0.00" max="10000.00" step="0.01" formControlName="budget" id="budget">
+      </div>
+      <button class="btn" (click)="calculate()">calculate</button>
+    </form>
+  </div>
+</div>

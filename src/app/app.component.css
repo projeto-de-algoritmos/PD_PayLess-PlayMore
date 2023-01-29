@@ -1,0 +1,123 @@
+.main {
+  width: 100%;
+  padding: 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  color: var(--secondary);
+  font-size: 4rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.516);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.title::after {
+  display: block;
+  content: ' ';
+  width: 90%;
+  margin-left: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.235);
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 0.75fr 1.5fr 0.75fr;
+  width: 100%;
+  margin-top: 3rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.calculate {
+  align-items: flex-end;
+}
+
+.calculate .form-field  {
+    align-items: flex-end;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+input {
+  width: 80%;
+  border:1px solid var(--primary);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+label {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+input:focus {
+  outline-color: var(--secondary);
+}
+
+.btn {
+  background-color: transparent;
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+  padding: 0.7rem 1.5rem;
+  border-radius: 20px;
+  width: 200px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: 0.5s all ease;
+}
+
+.btn:hover {
+  background-color: var(--secondary);
+  color: var(--background);
+}
+
+.list {
+  background-color: var(--primary);
+  width: 100%;
+  border-radius: 20px;
+  padding: 1rem 1rem;
+  color: var(--background);
+  list-style: none;
+}
+
+.list-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 0.45fr;
+  text-align: center;
+}
+
+.header {
+  border-bottom: 1px solid white;
+}
+
+.list-item span {
+  border-right: 1px solid white;
+}
+
+.list-item span:last-child {
+  border-right:none;
+}
+
+.list-item span {
+  padding: 0.5rem 0;
+}
+
+img {
+  margin: auto;
+  cursor: pointer;
+}
