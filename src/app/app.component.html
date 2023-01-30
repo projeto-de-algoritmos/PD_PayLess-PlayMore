@@ -4,15 +4,15 @@
     <form [formGroup]="registerForm" class="form">
       <div class="form-field">
         <label for="name">Game name *</label>
-        <input type="text" formControlName="name" id="name">
+        <input type="text" formControlName="name" id="name" placeholder="Call Of Duty">
       </div>
       <div class="form-field">
         <label for="hours">Hours to complete *</label>
-        <input type="number" formControlName="hours" id="hours">
+        <input type="number" formControlName="hours" id="hours" placeholder="10">
       </div>
       <div class="form-field">
-        <label for="price">Price *</label>
-        <input type="number" min="0.00" max="10000.00" step="0.01" formControlName="price" id="price">
+        <label for="price">Price (R$) *</label>
+        <input type="number" min="0.00" max="10000.00" step="0.01" formControlName="price" id="price" placeholder="R$ 180.50">
       </div>
       <button class="btn"  (click)="register()">register</button>
     </form>
@@ -20,7 +20,7 @@
       <li class="list-item header">
         <span>Game Name</span>
         <span>Hours to complete</span>
-        <span>Price</span>
+        <span>Price (R$)</span>
         <span>Actions</span>
       </li>
       <li class="list-item" *ngFor="let item of games;let i = index" [id]="i">
@@ -31,9 +31,10 @@
       </li>
     </ul>
     <form [formGroup]="calcForm" class="form calculate">
+      <p>The game with the best Hours x Price rate will be highlighted in the list.</p>
       <div class="form-field">
-        <label for="budget">Budget *</label>
-        <input type="number" min="0.00" max="10000.00" step="0.01" formControlName="budget" id="budget">
+        <label for="budget">Budget (R$) *</label>
+        <input type="number" min="0.00" max="10000.00" step="0.01" formControlName="budget" id="budget" placeholder="R$ 299,99">
       </div>
       <button class="btn" (click)="calculate()">calculate</button>
     </form>
