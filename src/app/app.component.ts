@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   registerForm!: FormGroup;
   calcForm!: FormGroup;
   games: IGame[] = [];
+  resultId?: string;
 
   constructor(private readonly _fb: FormBuilder) { }
 
@@ -31,24 +32,32 @@ export class AppComponent implements OnInit {
   }
 
   register(): void {
-    if (this.registerForm.valid) {
-      this.games.push(this.registerForm.value);
-      this.registerForm.reset()
-    } else {
-      window.alert("Fill all the required fields!")
-    }
+    if (this.registerForm.invalid) return window.alert("Fill all the required fields!");
+
+    this.resetResult();
+    this.games.push(this.registerForm.value);
+    this.registerForm.reset()
   }
 
   remove(index: number) {
+    this.resetResult();
     this.games.splice(index, 1);
   }
 
   calculate(): void {
-    if (this.calcForm.valid) {
-      // TODO calculo e mostrar o resultado na lista
-      console.log(this.calcForm.value)
-    } else {
-      window.alert("Fill all the required fields!")
-    }
+    if (this.calcForm.invalid) return window.alert("Fill all the required fields!");
+
+    this.resetResult();
+    // TODO calculo e setar o resultid
+    this.resultId = '0'
+    const el = document.getElementById(this.resultId) as HTMLElement;
+    el.style.backgroundColor = 'var(--secondary)';
+  }
+
+  private resetResult(): void {
+    if (!this.resultId) return;
+
+    const el = document.getElementById(this.resultId) as HTMLElement;
+    el.style.backgroundColor = 'unset';
   }
 }
