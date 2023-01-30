@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   registerForm!: FormGroup;
   calcForm!: FormGroup;
   games: IGame[] = [];
-  resultId?: string;
+  resultId?: number | null;
 
   constructor(private readonly _fb: FormBuilder) { }
 
@@ -48,16 +48,41 @@ export class AppComponent implements OnInit {
     if (this.calcForm.invalid) return window.alert("Fill all the required fields!");
 
     this.resetResult();
-    // TODO calculo e setar o resultid
-    this.resultId = '0'
-    const el = document.getElementById(this.resultId) as HTMLElement;
+    const budget = this.calcForm.value.budget;
+    this.resultId = this.knapsack(budget);
+    if(this.resultId === null || this.resultId === undefined) return window.alert("Insufficient budget!");
+    const el = document.getElementById(this.resultId.toString()) as HTMLElement;
     el.style.backgroundColor = 'var(--secondary)';
   }
 
-  private resetResult(): void {
-    if (!this.resultId) return;
+  private knapsack(budget: number): number | null {
+    let dp = Array(budget + 1).fill(0);
+    let chosen = Array(this.games.length).fill(null).map(() => Array(budget + 1).fill(null));
+    for (let i = 0; i < this.games.length; i++) {
+      let game = this.games[i];
+      for (let j = 0; j <= budget; j++) {
+        if (parseFloat(game.price) > j) {
+          chosen[i][j] = i > 0 ? chosen[i - 1][j] : i;
+          continue;
+        }
+        let candidate = dp[j - parseFloat(game.price)] + game.hours;
+        if (candidate > dp[j]) {
+          dp[j] = candidate;
+          chosen[i][j] = i;
+        } else {
+          chosen[i][j] = i > 0 ? chosen[i - 1][j] : i;
+        }
+      }
+    }
+    return chosen[this.games.length - 1][budget];
+  }
 
-    const el = document.getElementById(this.resultId) as HTMLElement;
+
+  private resetResult(): void {
+    if (this.resultId === null || this.resultId === undefined) return;
+
+    const el = document.getElementById(this.resultId.toString()) as HTMLElement;
     el.style.backgroundColor = 'unset';
+    this.resultId = undefined;
   }
 }
