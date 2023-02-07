@@ -9,6 +9,10 @@
 | 170144488 | [Henrique Melo](https://github.com/HenriqueAmorim20) |
 | 180122258 | [Igor Queiroz Lima](https://github.com/igorq937)     |
 
+## Apresentação
+
+https://github.com/projeto-de-algoritmos/PD_PayLess-PlayMore/blob/master/video.mp4
+
 ## Sobre 
 A partir de uma lista de jogos que podem ser cadastrados (nome, preço e horas até completar) e qual o máximo que pode ser gasto, é mostrado ao usuário qual jogo ele tem o maior tempo de gameplay pelo dinheiro gasto.
 
